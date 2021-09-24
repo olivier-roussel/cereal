@@ -72,6 +72,12 @@ option(CEREAL_INSTALL "Generate the install target" ${CEREAL_MASTER_PROJECT})
 if(CEREAL_INSTALL)
     include(CMakePackageConfigHelpers)
 
+    # Pkg-config file
+    configure_file("cereal.pc.in" "${CMAKE_CURRENT_BINARY_DIR}/cereal.pc" @ONLY)
+    install(FILES
+            "${CMAKE_CURRENT_BINARY_DIR}/cereal.pc"
+            DESTINATION lib/pkgconfig)
+
     install(TARGETS cereal EXPORT ${PROJECT_NAME}Targets)
     install(DIRECTORY include/cereal DESTINATION include)
 
